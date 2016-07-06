@@ -17,3 +17,9 @@
 	拾荒者，Roguelike 类游戏
 	
 	Tag：2D、Roguelike、过关、生存
+	
+- [Ninjia](https://github.com/yangruihan/Unity3D_Project/tree/master/NinjiaProject)
+
+	忍者跑酷
+	
+	Tag：2D、横版、跑酷
