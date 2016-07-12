@@ -12,7 +12,7 @@
 	
 	Tag：3D、竞技
 
-3. [Roguelike](https://github.com/yangruihan/Unity3D_Project/tree/master/RoguelikeProject)
+3. [Rogue-like](https://github.com/yangruihan/Unity3D_Project/tree/master/RoguelikeProject)
 
 	拾荒者，Roguelike 类游戏
 	
