@@ -56,7 +56,9 @@ namespace Ruihanyang.Game
 		// 构造 Tile
 		void BuildTile ()
 		{
-			
+			int idx = Random.Range (0, tilePrefabs.Length);
+
+			GameObject temp = tilePrefabs [idx];
 		}
 
 		#endregion
