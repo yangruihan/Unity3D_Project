@@ -45,7 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\PlayerMotor.cs" />
+     <Compile Include="Assets\Tile.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5.4/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

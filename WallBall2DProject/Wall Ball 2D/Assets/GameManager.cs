@@ -14,7 +14,9 @@ namespace Ruihanyang.Game
 		#region 管理类
 
 		// Tile 管理类
-		public Stack<GameObject> tileManager;
+		public List<GameObject> tileManager;
+
+		public Player player;
 
 		#endregion
 
@@ -22,6 +24,9 @@ namespace Ruihanyang.Game
 
 		[SerializeField]
 		private GameObject[] tilePrefabs;
+
+		[SerializeField]
+		private GameObject playerPrefab;
 
 		#endregion
 
@@ -45,20 +50,58 @@ namespace Ruihanyang.Game
 				Destroy (gameObject);
 			}
 
-			BuildTile ();
+			actualPosition = startPosition;
+
+			for (int i = 0; i < currentMaxTileCount; i++) {
+				BuildTile ();
+			}
+		}
+
+		void Start ()
+		{
+			GameObject _temp = Instantiate (playerPrefab, startPosition, Quaternion.identity) as GameObject;
+
+			_temp.name = "Player";
+
+			player = _temp.GetComponent<Player> ();
+
+			player.Init (tileManager [1].transform.position);
 		}
 
 		#endregion
 
-
 		#region 自定义函数
 
-		// 构造 Tile
+		/// <summary>
+		/// 构造 Tile
+		/// </summary>
 		void BuildTile ()
 		{
-			int idx = Random.Range (0, tilePrefabs.Length);
+			int _idx = Random.Range (0, tilePrefabs.Length);
 
-			GameObject temp = tilePrefabs [idx];
+			GameObject _temp = tilePrefabs [_idx];
+
+			_temp = Instantiate (_temp, actualPosition, Quaternion.identity) as GameObject;
+
+			_temp.name = "Tile";
+
+			tileManager.Add (_temp);
+
+			CalNextTilePos ();
+		}
+
+		/// <summary>
+		/// 计算下一块 Tile 的位置
+		/// </summary>
+		void CalNextTilePos ()
+		{
+			int _rnd = Random.Range (0, 100);
+
+			if (_rnd < 50) {
+				actualPosition += new Vector3 (1f, 0, 0);
+			} else {
+				actualPosition += new Vector3 (0, 1f, 0);
+			}
 		}
 
 		#endregion
