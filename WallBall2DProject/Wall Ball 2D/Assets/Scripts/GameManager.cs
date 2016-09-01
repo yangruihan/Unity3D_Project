@@ -35,6 +35,10 @@ namespace Ruihanyang.Game
 		[SerializeField]
 		private int currentMaxTileCount = 10;
 
+		// 速度增长幅度
+		[SerializeField]
+		private float speedIncValue = 0.005f;
+
 		[SerializeField]
 		private Text scoreText;
 
@@ -42,6 +46,9 @@ namespace Ruihanyang.Game
 		private Vector3 startPosition = Vector3.zero;
 		// 当前位置
 		private Vector3 actualPosition = Vector3.zero;
+
+		// 游戏时间
+		private float gameTime = 0f;
 
 		#region 回调函数
 
@@ -59,9 +66,13 @@ namespace Ruihanyang.Game
 
 		void Update ()
 		{
+			gameTime += Time.deltaTime;
+
 			if (tileManager.Count < currentMaxTileCount) {
 				BuildTile ();
 			}
+
+			player.controller.AddSpeed (speedIncValue * Time.deltaTime);
 		}
 
 		#endregion
@@ -84,9 +95,7 @@ namespace Ruihanyang.Game
 		{
 			actualPosition = startPosition;
 
-			for (int i = 0; i < currentMaxTileCount; i++) {
-				BuildTile ();
-			}
+			BuildInitTile ();
 
 			GameObject _temp = Instantiate (playerPrefab, startPosition, Quaternion.identity) as GameObject;
 
@@ -95,6 +104,21 @@ namespace Ruihanyang.Game
 			player = _temp.GetComponent<Player> ();
 
 			player.Init (tileManager [1].transform.position);
+		}
+
+		void BuildInitTile ()
+		{
+			for (int i = 0; i < (5 > currentMaxTileCount ? currentMaxTileCount : 5); i++) {
+				GameObject _temp = tilePrefabs [0];
+
+				_temp = Instantiate (_temp, actualPosition, Quaternion.identity) as GameObject;
+
+				_temp.name = "Tile";
+
+				tileManager.Add (_temp);
+
+				actualPosition += new Vector3 (1f, 0f, 0f);
+			}
 		}
 
 		/// <summary>
@@ -123,9 +147,9 @@ namespace Ruihanyang.Game
 			int _rnd = Random.Range (0, 100);
 
 			if (_rnd < 50) {
-				actualPosition += new Vector3 (1f, 0, 0);
+				actualPosition += new Vector3 (1f, 0f, 0f);
 			} else {
-				actualPosition += new Vector3 (0, 1f, 0);
+				actualPosition += new Vector3 (0f, 1f, 0f);
 			}
 		}
 

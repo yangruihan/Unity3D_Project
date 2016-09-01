@@ -9,7 +9,9 @@ namespace Ruihanyang.Game
 		static public Vector3 DIRECTION_RIGHT = new Vector3 (0f, 1f, 0f);
 
 		[SerializeField]
-		private float speed = 5f;
+		private float initSpeed = 5f;
+
+		private float currentSpeed = 0f;
 
 		private Vector3 direction = Vector3.zero;
 
@@ -24,11 +26,13 @@ namespace Ruihanyang.Game
 		void Start ()
 		{
 			rigid = GetComponent<Rigidbody2D> ();
+
+			currentSpeed = initSpeed;
 		}
 
 		void Update ()
 		{
-			rigid.MovePosition (transform.position + direction * speed * Time.deltaTime);
+			rigid.MovePosition (transform.position + direction * currentSpeed * Time.deltaTime);
 		}
 
 		#endregion
@@ -50,6 +54,15 @@ namespace Ruihanyang.Game
 			} else {
 				direction = DIRECTION_LEFT;
 			}
+		}
+
+		/// <summary>
+		/// 增加移动速度
+		/// </summary>
+		/// <param name="_addValue">Add value.</param>
+		public void AddSpeed (float _addValue)
+		{
+			currentSpeed += _addValue;
 		}
 
 		#endregion

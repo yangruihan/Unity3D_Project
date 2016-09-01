@@ -32,6 +32,11 @@ namespace Ruihanyang.Game
 			motor.Init (_initDirection);
 		}
 
+		public void AddSpeed (float _addValue)
+		{
+			motor.AddSpeed (_addValue);
+		}
+
 		#endregion
 	}
 }
