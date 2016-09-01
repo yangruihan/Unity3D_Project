@@ -12,6 +12,8 @@ namespace Ruihanyang.Game
 
 		#endregion
 
+		// 玩家得分
+		public int score = 0;
 
 		#region 回调函数
 
@@ -29,6 +31,13 @@ namespace Ruihanyang.Game
 			Camera.main.GetComponent<CameraFollow> ().SetPlayer (this.gameObject);
 
 			controller.Init (_initDirection);
+		}
+
+		public void AddScore (int _score)
+		{
+			score += _score;
+
+			GameManager.Instance.UpdateScoreText (score);
 		}
 
 		#endregion

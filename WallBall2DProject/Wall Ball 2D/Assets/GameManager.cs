@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -34,6 +35,9 @@ namespace Ruihanyang.Game
 		[SerializeField]
 		private int currentMaxTileCount = 10;
 
+		[SerializeField]
+		private Text scoreText;
+
 		// 出生点
 		private Vector3 startPosition = Vector3.zero;
 		// 当前位置
@@ -50,15 +54,40 @@ namespace Ruihanyang.Game
 				Destroy (gameObject);
 			}
 
+			Init ();
+		}
+
+		void Update ()
+		{
+			if (tileManager.Count < currentMaxTileCount) {
+				BuildTile ();
+			}
+		}
+
+		#endregion
+
+		#region 自定义公有函数
+
+		public void UpdateScoreText (int _score)
+		{
+			scoreText.text = _score + "";
+		}
+
+		#endregion
+
+		#region 自定义私有函数
+
+		/// <summary>
+		/// 初始化函数
+		/// </summary>
+		void Init ()
+		{
 			actualPosition = startPosition;
 
 			for (int i = 0; i < currentMaxTileCount; i++) {
 				BuildTile ();
 			}
-		}
 
-		void Start ()
-		{
 			GameObject _temp = Instantiate (playerPrefab, startPosition, Quaternion.identity) as GameObject;
 
 			_temp.name = "Player";
@@ -67,10 +96,6 @@ namespace Ruihanyang.Game
 
 			player.Init (tileManager [1].transform.position);
 		}
-
-		#endregion
-
-		#region 自定义函数
 
 		/// <summary>
 		/// 构造 Tile
