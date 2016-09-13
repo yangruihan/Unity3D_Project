@@ -21,9 +21,6 @@ public class AlphaMapper : BaseMeshEffect
         {
             var v = list[i];
             v.uv1 = AlphaUV[IndexMap[i]];
-
-            print(v.uv1);
-
             list[i] = v;
         }
         vh.AddUIVertexTriangleStream(list);

@@ -8,6 +8,7 @@
 	{
 		Pass
 		{
+			Blend SrcAlpha OneMinusSrcAlpha
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -37,8 +38,8 @@
 			{
 				v2f o;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-				o.uv0 = TRANSFORM_TEX(v.uv0, _MainTex);
-				o.uv1 = TRANSFORM_TEX(v.uv1, _MainTex);
+				o.uv0 = v.uv0;
+				o.uv1 = v.uv1;
 				o.color = v.color;
 				return o;
 			}
