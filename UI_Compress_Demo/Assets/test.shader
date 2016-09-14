@@ -48,7 +48,7 @@
 			{
 				half4 color = tex2D(_MainTex, IN.uv0) * IN.color;
 				half4 alphaColor = tex2D(_MainTex, IN.uv1);
-				color.a *= (alphaColor.r + alphaColor.g + alphaColor.b);
+				color.a = (alphaColor.r + alphaColor.g + alphaColor.b) / 3.0;
 				return color;
 			}
 			ENDCG
