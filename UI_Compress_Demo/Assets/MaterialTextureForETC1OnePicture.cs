@@ -72,7 +72,7 @@ public class MaterialTextureForETC1OnePicture : MonoBehaviour {
 
         //if (colors2rdLevel.Length != (mipMapTex.width + 1) / 2 * (mipMapTex.height + 1) / 2)
         //{
-        if (colors2rdLevel.Length != (mipMapTex.width / 2 * mipMapTex.height / 2))
+        if (colors2rdLevel.Length != mipMapTex.width * mipMapTex.height)
         {
             Debug.LogError("Size Error.");
             return;
