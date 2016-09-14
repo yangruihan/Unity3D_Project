@@ -11,7 +11,7 @@ public class SetAlphaUV : BaseMeshEffect
 
     void Start()
     {
-        AlphaSprite = GetComponent<SpriteRenderer>().sprite;
+        AlphaSprite = GetComponent<Image>().sprite;
 
         RGBUV = new Vector2[AlphaSprite.uv.Length];
         AlphaUV = new Vector2[AlphaSprite.uv.Length];
