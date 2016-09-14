@@ -54,10 +54,12 @@ public class MaterialTextureForETC1
             Debug.LogError("Load Texture failed: " + assetRelativePath);
             return;
         }
+
         if (ti == null)
         {
             return;
         }
+
         bool bGenerateMipMap = ti.mipmapEnabled;    //same with the texture import setting        
 
         Texture2D rgbTex = new Texture2D(sourcetex.width, sourcetex.height, TextureFormat.RGB24, bGenerateMipMap);
@@ -66,11 +68,9 @@ public class MaterialTextureForETC1
         Texture2D mipMapTex = new Texture2D(sourcetex.width, sourcetex.height, TextureFormat.RGBA32, true);  //Alpha Channel needed here  
         mipMapTex.SetPixels(sourcetex.GetPixels());
         mipMapTex.Apply();
+
         Color[] colors2rdLevel = mipMapTex.GetPixels(1);   //Second level of Mipmap  
         Color[] colorsAlpha = new Color[colors2rdLevel.Length];
-
-        Debug.LogWarning("123:" + colors2rdLevel.Length);
-        Debug.LogWarning((mipMapTex.width + 1) / 2 * (mipMapTex.height + 1) / 2 + "");
 
         //if (colors2rdLevel.Length != (mipMapTex.width + 1) / 2 * (mipMapTex.height + 1) / 2)
         //{
@@ -92,7 +92,9 @@ public class MaterialTextureForETC1
                 bAlphaExist = true;
             }
         }
+
         Texture2D alphaTex = null;
+
         if (bAlphaExist)
         {
             alphaTex = new Texture2D((sourcetex.width + 1) / 2, (sourcetex.height + 1) / 2, TextureFormat.RGB24, bGenerateMipMap);
